@@ -34,7 +34,8 @@ function panda_custom_settings(){
 	add_settings_section('panda-sidebar-options', 'Sidebar Options', 'panda_sidebar_options', 'panda_page');
 
  	//add_settings_field( string $id, string $title, callable $callback, string $page, string $section = 'default', array $args = array() )
-	add_settings_field('sidebar-name', 'First Name', 'panda_sidebar_name', 'panda_page','panda-sidebar-options');
+	add_settings_field('sidebar-name', 'First Name', 'panda_sidebar_name', 'panda_page','panda-sidebar-options'); // last parameter here should matcmatch the id on the previous line
+	
 
 }
 function panda_sidebar_options(){
