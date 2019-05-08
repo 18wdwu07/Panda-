@@ -4,5 +4,13 @@
      * as styles, scripts, and meta tags. -->
 
     <!--  no parameter no return values -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <?php wp_head(); ?>
 
-     <?php wp_head(); ?>
+    </head>
+    <body <?php body_class(); ?> >
+        <!-- <p>This is from header.php</p> -->
