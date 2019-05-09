@@ -10,7 +10,7 @@
             <div class="content">
                 <?php the_content(); ?>
             </div>
-            <a href="<?php the_permalink(); ?>">View Post</a>
+            <a class="btn btn-primary" href="<?php the_permalink(); ?>">View Post</a>
             <hr>
         </div>
     <?php endwhile; ?>

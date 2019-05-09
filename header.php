@@ -10,7 +10,13 @@
         <meta charset="utf-8">
         <title></title>
         <?php wp_head(); ?>
-
     </head>
     <body <?php body_class(); ?> >
         <!-- <p>This is from header.php</p> -->
+        <div class="container">
+            <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'header_menu',
+                    'container_class' => 'my added class'
+                ));
+            ?>
