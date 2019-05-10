@@ -9,8 +9,6 @@ function add_custom_files(){
 
     wp_enqueue_style('my_custom_stylesheet', get_template_directory_uri() . '/assets/css/custom_theme_style.css' , array(), '0.1');
 
-    // wp_enqueue_style('editor_css', get_template_directory_uri() . '/assets/css/style-editor.css' , array(), '0.1');
-
     wp_enqueue_script('jquery');
 
     wp_enqueue_script('my_bootstrap_script', get_template_directory_uri() . '/assets/js/bootstrap.js', array(), '4.3.1', true);
@@ -30,3 +28,7 @@ require_once get_template_directory() . '/assets/class-wp-bootstrap-navwalker.ph
 
 //Add all of the defauly block styles needed for gutenbergs editor
 add_theme_support( 'wp-block-styles' );
+
+add_theme_support('post-thumbnails');
+
+add_image_size('icon', 50, 50, true);
