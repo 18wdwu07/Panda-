@@ -18,9 +18,9 @@
                         <?php the_post_thumbnail('medium_large', ['class'=>'img-fluid', 'alt'=>'this is the featured image']); ?>
                     </div>
                     <!-- <div class="col-12 col-sm-6"> -->
-                    <?php $columnClasses = 'col-12 col-md-6' ?>
+                    <?php $columnClasses = 'col-12 col-sm-6' ?>
                 <?php else: ?>
-                    <!-- <div class="col-12"> -->
+                    <div class="col-12">
                     <?php $columnClasses = 'col-12' ?>
                 <?php endif; ?>
                 <div class="<?php echo $columnClasses; ?>">

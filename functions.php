@@ -32,3 +32,10 @@ add_theme_support( 'wp-block-styles' );
 add_theme_support('post-thumbnails');
 
 add_image_size('icon', 50, 50, true);
+
+function wpdocs_custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
+
+add_theme_support( 'post-formats', array( 'image', 'video', 'audio' ) );
