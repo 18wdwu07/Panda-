@@ -18,5 +18,4 @@
             <p class="card-text"><small class="text-muted">Posted: <?php the_date('F j, Y'); ?> at <?php the_time('g:i a'); ?></small></p>
         </div>
     </div>
-
 <?php endif; ?>
