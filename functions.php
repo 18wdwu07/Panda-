@@ -1,6 +1,5 @@
 <?php
 
-
 //wp function for local path
 require get_template_directory() . '/inc/function-admin.php';
 
@@ -39,3 +38,23 @@ function wpdocs_custom_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
 
 add_theme_support( 'post-formats', array( 'image', 'video', 'audio' ) );
+
+
+
+
+add_action( 'widgets_init', 'add_sidebar' );
+
+function add_sidebar() {
+
+    register_sidebar( array(
+        'name' => __( 'Main Sidebar', '18wdwu07Panda' ),
+        'id' => 'sidebar-1',
+        'description' => __( 'Widgets in this area will be shown on all posts and pages.', '18wdwu07Panda' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+    	'after_widget'  => '</li>',
+    	'before_title'  => '<h2 class="widgettitle">',
+    	'after_title'   => '</h2>',
+        )
+    );
+
+}
