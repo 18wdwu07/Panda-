@@ -20,9 +20,7 @@
         <?php if( is_active_sidebar('sidebar-1') ): ?>
             <div class="col-3">
                 <div class="card bg-light p-3">
-                    <ul>
-                        <?php dynamic_sidebar('sidebar-1'); ?>
-                    </ul>
+                    <?php dynamic_sidebar('sidebar-1'); ?>
                 </div>
             </div>
         <?php endif; ?>
