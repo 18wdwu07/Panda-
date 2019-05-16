@@ -27,7 +27,7 @@ function add_event_post_type(){
         'show_in_nav_menus' => false,
         'menu_position' => 6,
         'menu_icon' => 'dashicons-tickets',
-        'supports' => array('title', 'thumbnail')
+        'supports' => array('title', 'editor')
     );
 
     register_post_type('event', $args);
