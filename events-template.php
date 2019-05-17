@@ -27,7 +27,8 @@
 
         <?php
             $args = array(
-                'post_type' => 'page'
+                'post_type' => 'event',
+                'posts_per_page' => -1
             );
             $allEvents = new WP_Query($args);
             // var_dump($allEvents);
