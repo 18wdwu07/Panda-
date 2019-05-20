@@ -86,3 +86,5 @@ add_action('widgets_init', 'unregister_default_widgets', 11);
 
 
 require get_template_directory() . '/inc/custom_post_types.php';
+
+require get_template_directory() . '/inc/customizer.php';
