@@ -15,7 +15,8 @@
         }
      ?>
 
-    <div class="row mb-5 d-flex">
+    <div class="row mb-5">
+
         <?php if( have_posts() ): ?>
             <div class="col <?php echo $contentorder; ?>">
                 <div class="card-deck">
@@ -32,7 +33,6 @@
                     <?php dynamic_sidebar('sidebar-1'); ?>
                 </div>
             </div>
-
         <?php endif; ?>
 
 
