@@ -20,6 +20,9 @@ function mytheme_customize_register( $wp_customize ) {
    ) ) );
 
 
+
+
+
    $wp_customize->add_setting( 'navigation_background' , array(
        'default'   => '#ffffff',
        'transport' => 'refresh',
@@ -61,6 +64,35 @@ function mytheme_customize_register( $wp_customize ) {
 
 
 
+   $wp_customize->add_section( 'front_page_section' , array(
+       'title'      => __( 'Front Page Info', '18wdwu07Panda' ),
+       'priority'   => 30,
+   ) );
+
+   $wp_customize->add_setting( 'featured_post_setting' , array(
+       'default'   => '',
+       'transport' => 'refresh',
+   ) );
+
+   $args = array(
+       'posts_per_page' => -1
+   );
+   $allPosts = get_posts($args);
+
+   $options = array();
+   $options[''] = 'Please select a featured post';
+   foreach ($allPosts as $singlePost) {
+       $options[$singlePost->ID] = $singlePost->post_title;
+   }
+
+   $wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'featured_post_control', array(
+   	'label'      => __( 'Featured Post', '18wdwu07Panda' ),
+   	'section'    => 'front_page_section',
+   	'settings'   => 'featured_post_setting',
+    'type'       => 'select',
+    'choices' => $options
+   ) ) );
+
 
 
 
@@ -68,6 +100,14 @@ function mytheme_customize_register( $wp_customize ) {
 
 }
 add_action( 'customize_register', 'mytheme_customize_register' );
+
+
+
+
+
+
+
+
 
 function mytheme_customize_css()
 {

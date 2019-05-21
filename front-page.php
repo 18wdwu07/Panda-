@@ -2,7 +2,42 @@
 
     <h1>This is from front-page.php</h1>
 
-    <h3><?php echo get_theme_mod('sidebar_position'); ?></h3>
+    <h3><?php echo get_theme_mod('featured_post_setting'); ?></h3>
+
+    <?php
+        $featuredPostID = get_theme_mod('featured_post_setting');
+        if($featuredPostID):
+    ?>
+
+        <?php
+            $args = array(
+                'p' => get_theme_mod('featured_post_setting')
+            );
+            $featuredPost = new WP_Query($args);
+         ?>
+
+         <?php if($featuredPost->have_posts()): ?>
+             <?php while( $featuredPost->have_posts() ): $featuredPost->the_post(); ?>
+                 <div class="row">
+                     <div class="col-12">
+                         <h4>Featured Post</h4>
+                     </div>
+                 </div>
+                 <div class="row mb-5">
+                     <div class="col-12">
+                         <div class="card">
+                             <h4><?php the_title(); ?></h4>
+                             <div class="">
+                                 <?php the_excerpt(); ?>
+                             </div>
+                             <a href="<?php the_permalink(); ?>" class="btn btn-primary btn-block">Check out the featured Post</a>
+                         </div>
+                     </div>
+                 </div>
+             <?php endwhile; ?>
+         <?php endif; ?>
+
+     <?php endif; ?>
 
     <?php
         $side = get_theme_mod('sidebar_position');
