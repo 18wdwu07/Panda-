@@ -6,12 +6,12 @@
 
     <?php
         $featuredPostID = get_theme_mod('featured_post_setting');
-        if($featuredPostID):
+        if($featuredPostID)
     ?>
 
         <?php
             $args = array(
-                'p' => get_theme_mod('featured_post_setting')
+                'p' => $featuredPostID
             );
             $featuredPost = new WP_Query($args);
          ?>
@@ -36,8 +36,6 @@
                  </div>
              <?php endwhile; ?>
          <?php endif; ?>
-
-     <?php endif; ?>
 
     <?php
         $side = get_theme_mod('sidebar_position');
