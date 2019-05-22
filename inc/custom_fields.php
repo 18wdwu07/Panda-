@@ -19,7 +19,13 @@ $metaboxes = array(
                 'title' => 'What side is it on?',
                 'type' => 'select',
                 'description' => '',
-                'choices' => array('left', 'right')
+                'choices' => array('Left', 'Right')
+            ),
+            'extra_content' => array(
+                'title' => 'Extra Content',
+                'type' => 'textarea',
+                'description' => '',
+                'rows' => 5
             )
         )
     ),
@@ -42,31 +48,39 @@ function create_custom_meta_boxes(){
             'normal', 'high', $metabox);
         };
     }
-
-    // var_dump($metaboxes);
-    // add_meta_box('random_meta_box', 'This is a Meta Box', 'output_custom_meta_box', 'post');
-
 }
 
 add_action('admin_init', 'create_custom_meta_boxes');
 
 function output_custom_meta_box($post, $metabox){
-    // var_dump($metabox);
-    // echo '<h1>'.$metabox['title'].'</h1>';
     $fields = $metabox['args']['fields'];
     if($fields){
         foreach ($fields as $fieldID => $field) {
             switch($field['type']){
                 case 'text':
-                    echo '<label>'.$field['title'].'</label>';
+                    echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
                     echo '<input type="text" name="'.$fieldID.'" class="inputField">';
                 break;
                 case 'number':
-                    echo '<label>'.$field['title'].'</label>';
-                    echo '<input type="number" class="inputField">';
+                    echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
+                    echo '<input type="number" name="'.$fieldID.'" class="inputField">';
+                break;
+                case 'textarea':
+                    echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
+                    echo '<textarea class="inputField" name="'.$fieldID.'" rows="'.$field['rows'].'"></textarea>';
+                break;
+                case 'select':
+                    echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
+                    echo '<select name="'.$fieldID.'" class="inputField customSelect">';
+                        echo '<option class="customSelect"> -- Please Enter a value -- </option>';
+                        foreach($field['choices'] as $choice){
+                            echo '<option class="customSelect" value="'.$choice.'">'.$choice.'</option>';
+                        }
+                    echo '</select>';
                 break;
                 default:
-                    echo '<p>This is a the default input</p>';
+                    echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
+                    echo '<input type="text" name="'.$fieldID.'" class="inputField">';
                 break;
             }
         }
