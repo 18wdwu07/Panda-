@@ -11,7 +11,7 @@
 
         <?php
             $args = array(
-                'p' => $featuredPostID
+                'p' => get_theme_mod('featured_post_setting')
             );
             $featuredPost = new WP_Query($args);
          ?>

@@ -1,5 +1,5 @@
 body{
-    background-color: red;
+    /* background-color: red; */
 }
 
 .inputField{
@@ -10,5 +10,5 @@ body{
 }
 
 .customSelect{
-    text-align-last:center; 
+    text-align-last:center;
 }
