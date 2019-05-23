@@ -36,6 +36,17 @@ $metaboxes = array(
     'events_meta' => array(
         'title' => 'Extra Event Information',
         'post_type' => 'event'
+    ),
+    'staff_meta' => array(
+        'title' => 'Extra Staff Information',
+        'post_type' => 'staff',
+        'fields' => array(
+            'location' => array(
+                'title' => 'Role',
+                'type' => 'text',
+                'description' => 'Where is your role?'
+            ),
+        )
     )
 );
 
@@ -56,8 +67,6 @@ function output_custom_meta_box($post, $metabox){
     $fields = $metabox['args']['fields'];
 
     $customValues = get_post_custom($post->ID);
-    var_dump($customValues);
-    echo '<br>';
 
     echo '<input type="hidden" name="post_format_meta_box_nonce" value="'.wp_create_nonce( basename(__FILE__) ).'">';
 
@@ -65,16 +74,12 @@ function output_custom_meta_box($post, $metabox){
         foreach ($fields as $fieldID => $field) {
             switch($field['type']){
                 case 'text':
-                    echo $customValues[$fieldID][0];
-                    echo '<br>';
                     echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
-                    echo '<input type="text" name="'.$fieldID.'" class="inputField">';
+                    echo '<input type="text" name="'.$fieldID.'" class="inputField" value="'.$customValues[$fieldID][0].'">';
                 break;
                 case 'number':
-                    echo $customValues[$fieldID][0];
-                    echo '<br>';
                     echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
-                    echo '<input type="number" name="'.$fieldID.'" class="inputField">';
+                    echo '<input type="number" name="'.$fieldID.'" class="inputField" value="'.$customValues[$fieldID][0].'">';
                 break;
                 case 'textarea':
                     echo $customValues[$fieldID][0];
@@ -126,7 +131,7 @@ function save_custom_metaboxes($postID){
     }
 
     $postType = get_post_type();
-    //not working
+
     foreach ($metaboxes as $metaboxID => $metabox) {
         if($metabox['post_type'] == $postType){
             $fields = $metabox['fields'];
@@ -136,6 +141,8 @@ function save_custom_metaboxes($postID){
 
                 if($newValue && $newValue != $oldValue){
                     update_post_meta($postID, $fieldID, $newValue);
+                } elseif($newValue == '' || ! isset($_POST[$fieldID]) ){
+                    delete_post_meta($postID, $fieldID, $oldValue);
                 }
 
             }
