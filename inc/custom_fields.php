@@ -93,9 +93,9 @@ function output_custom_meta_box($post, $metabox){
 
     if($fields){
         foreach ($fields as $fieldID => $field) {
-            if($customValues[$fieldID][0]){
-                $value = $customValues[$fieldID][0];
-            }
+            // if($customValues[$fieldID][0]){
+            //     $value = $customValues[$fieldID][0];
+            // }
 
             if(isset($field['condition'])){
                 $condition = 'class="conditionalField" data-condition="'.$field['condition'].'"';
@@ -107,7 +107,7 @@ function output_custom_meta_box($post, $metabox){
                 case 'text':
                     echo '<div id="'.$fieldID.'" '.$condition.' >';
                         echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
-                        echo '<input type="text" name="'.$fieldID.'" class="inputField" value="'.isset($value).'">';
+                        echo '<input type="text" name="'.$fieldID.'" class="inputField" value="'.$customValues[$fieldID][0].'">';
                     echo '</div>';
                 break;
                 case 'number':

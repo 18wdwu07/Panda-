@@ -26,7 +26,14 @@ function add_admin_styles(){
 
     if($screen->post_type === 'post' && ($screen->action === 'add' || $_GET['action'] === 'edit') ){
         wp_enqueue_script('change_post_formats_script', get_template_directory_uri() . '/assets/js/change_post_formats.js', array('jquery'), '0.1', true);
+
+        $format = get_post_format($_GET['post']);
+
+        wp_localize_script('change_post_formats_script', 'formatObject', array(
+            'format' => $format
+        ));
     }
+
 
 
 }
