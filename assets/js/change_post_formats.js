@@ -2,13 +2,12 @@ $ = jQuery;
 
 $(document).ready(function(){
 
-    
+
     $('.conditionalField').hide();
     var inputs = $('.conditionalField');
     inputs.each(function(i, input){
         if($(this).data('condition') == formatObject['format']){
             $(this).show();
-            return;
         }
     });
 
@@ -22,7 +21,7 @@ $(document).ready(function(){
                 $(this).show();
             } else {
                 $(this).hide();
-                $(this).find('input').val('');
+                // $(this).find('input').val('');
             }
         })
 

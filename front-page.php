@@ -52,10 +52,10 @@
 
         <?php if( have_posts() ): ?>
             <div class="col <?php echo $contentorder; ?>">
-                <div class="card-deck">
-                <?php while( have_posts() ): the_post() ?>
-                    <?php get_template_part( 'content', get_post_format() ); ?>
-                <?php endwhile; ?>
+                <div class="row">
+                    <?php while( have_posts() ): the_post() ?>
+                        <?php get_template_part( 'content', get_post_format() ); ?>
+                    <?php endwhile; ?>
                 </div>
             </div>
         <?php endif; ?>
