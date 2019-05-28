@@ -52,12 +52,20 @@
 
         <?php if( have_posts() ): ?>
             <div class="col <?php echo $contentorder; ?>">
-                <div class="row">
+                <div id="postList" class="row cardList">
                     <?php while( have_posts() ): the_post() ?>
                         <?php get_template_part( 'content', get_post_format() ); ?>
                     <?php endwhile; ?>
                 </div>
+                <?php
+                    $totalPosts = wp_count_posts('post')->publish;
+                    $maxToShow = get_option('posts_per_page');
+                 ?>
+                 <?php if($totalPosts > $maxToShow):  ?>
+                     <button id="showMore" type="button" name="button" class="btn btn-block btn-primary">Show more Posts</button>
+                 <?php endif; ?>
             </div>
+
         <?php endif; ?>
 
         <?php if( is_active_sidebar('sidebar-1') ): ?>
