@@ -80,7 +80,7 @@ function add_enquiries_post_type(){
     $args = array(
         'labels' => $labels,
         'description' => 'Enquiries that come through our website',
-        'public' => false,
+        'public' => true,
         'menu_position' => 20,
         'query_var' => true,
         'menu_icon' => 'dashicons-megaphone',
