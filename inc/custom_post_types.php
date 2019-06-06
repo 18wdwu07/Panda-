@@ -69,3 +69,26 @@ function add_staff_post_type(){
     register_post_type('staff', $args);
 }
 add_action('init', 'add_staff_post_type');
+
+
+function add_enquiries_post_type(){
+    $labels = array(
+        'name' => _x('Enquiries', 'post type name', '18wdwu07Panda'),
+        'singular_name' => _x('Enquiry', 'post types singluar name', '18wdwu07Panda'),
+        'add_new_item' => _x('Add New Enquiry', 'adding new enquiry', '18wdwu07Panda')
+    );
+    $args = array(
+        'labels' => $labels,
+        'description' => 'Enquiries that come through our website',
+        'public' => false,
+        'menu_position' => 20,
+        'query_var' => true,
+        'menu_icon' => 'dashicons-megaphone',
+        'supports' => array(
+            'title',
+            'editor'
+        ),
+    );
+    register_post_type('enquiries', $args);
+}
+add_action('init', 'add_enquiries_post_type');

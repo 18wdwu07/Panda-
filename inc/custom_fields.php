@@ -68,6 +68,16 @@ $metaboxes = array(
                 'condition' => 'image'
             )
         )
+    ),
+    'enquiries' => array(
+        'title' => 'Enquiries',
+        'post_type' => 'enquiries',
+        'fields' => array(
+            'email' => array(
+                'title' => 'Email',
+                'type' => 'text'
+            ),
+        )
     )
 );
 
