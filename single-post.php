@@ -19,7 +19,6 @@
                 </div>
             </div>
             <?php
-                // get_template_part( 'content', get_post_format() );
                 get_template_part('singlePosts/contentPost', get_post_format() );
             ?>
         <?php endwhile; ?>
