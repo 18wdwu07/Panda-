@@ -51,9 +51,7 @@ function add_admin_styles(){
         ));
     }
 
-
-
-
+    wp_enqueue_script('addNewMediaScript', get_template_directory_uri(). '/assets/js/adminMeida.js', array('jquery'), '0.1', true);
 }
 add_action('admin_enqueue_scripts', 'add_admin_styles');
 
