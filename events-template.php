@@ -31,8 +31,6 @@
                 'posts_per_page' => -1
             );
             $allEvents = new WP_Query($args);
-            // var_dump($allEvents);
-            // die();
          ?>
          <?php if( $allEvents->have_posts() ): ?>
              <div class="row">
@@ -51,6 +49,31 @@
                                <div id="collapse<?php echo $cardNumber; ?>" class="collapse"  data-parent="#accordionExample">
                                  <div class="card-body">
                                      <?php the_content(); ?>
+                                     <hr>
+                                     <?php
+                            $featuredStaffMember = get_post_meta(get_the_ID(), 'featuredStaffMember', true);
+                                     ?>
+                                     <?php if($featuredStaffMember): ?>
+                                         <?php
+                                            $staffArgs = array(
+                                                'p' => $featuredStaffMember,
+                                                'post_type' => 'staff'
+                                            );
+                                            $staffMember = new WP_Query($staffArgs);
+                                          ?>
+                                          <?php if($staffMember->have_posts()): ?>
+                                              <?php while($staffMember->have_posts()): $staffMember->the_post(); ?>
+                                                  <h5><?php the_title(); ?></h5>
+                                                  <?php the_post_thumbnail('thumb'); ?>
+                                              <?php endwhile; ?>
+                                          <?php endif; ?>
+
+                                     <?php endif; ?>
+
+
+
+
+
                                  </div>
                                </div>
                              </div>

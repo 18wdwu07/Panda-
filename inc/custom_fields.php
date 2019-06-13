@@ -35,7 +35,14 @@ $metaboxes = array(
     ),
     'events_meta' => array(
         'title' => 'Extra Event Information',
-        'post_type' => 'event'
+        'post_type' => 'event',
+        'fields' => array(
+            'featuredStaffMember' => array(
+                'title' => 'Who is the Staff member in charge',
+                'type' => 'selectPosts',
+                'selectType' => 'staff'
+            )
+        )
     ),
     'staff_meta' => array(
         'title' => 'Extra Staff Information',
@@ -46,6 +53,11 @@ $metaboxes = array(
                 'type' => 'text',
                 'description' => 'Where is your role?'
             ),
+            'featuredEvent' => array(
+                'title' => 'What event are you wanting to show off',
+                'type' => 'selectPosts',
+                'selectType' => 'event'
+            )
         )
     ),
     'post_formats_meta' => array(
@@ -162,6 +174,32 @@ function output_custom_meta_box($post, $metabox){
                             echo '<button>Remove Image</button>';
                         }
                         echo '<button class="setCustomImage">Add Image</button>';
+                    echo '</div>';
+                break;
+                case 'selectPosts':
+                    if(get_post_meta($post->ID, $fieldID, true)){
+                        $savedPostID = get_post_meta($post->ID, $fieldID, true);
+                    }
+
+                    $args = array(
+                        'posts_per_page' => -1,
+                        'post_type' => $field['selectType']
+                    );
+                    $allPosts = get_posts($args);
+
+                    echo '<div id="'.$fieldID.'" '.$condition.' >';
+                        echo '<label for="'.$fieldID.'">'.$field['title'].'</label>';
+                        echo '<select name="'.$fieldID.'" class="inputField customSelect">';
+                        echo '<option>--- Please select a value ---</option>';
+                        foreach ($allPosts as $singlePost) {
+                            if($savedPostID == $singlePost->ID){
+                                $selected = 'selected="selected"';
+                            } else {
+                                $selected = '';
+                            }
+                            echo '<option '.$selected.' value="'.$singlePost->ID.'">'.$singlePost->post_title.'</option>';
+                        }
+                        echo '</select>';
                     echo '</div>';
                 break;
                 default:
